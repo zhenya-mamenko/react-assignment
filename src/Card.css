@@ -1,0 +1,13 @@
+/* Card.css */
+
+.Card {
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.Card-ingredients {
+    font-size: 0.9rem; 
+    height: 3rem;
+    overflow: hidden;
+}
+   

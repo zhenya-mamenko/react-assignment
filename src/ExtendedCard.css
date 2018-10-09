@@ -1,0 +1,33 @@
+/* ExtendedCard.css */
+
+.ExtendedCard-modal,
+.ExtendedCard-modal-box {
+  z-index: 900;
+}
+
+.ExtendedCard-modal-sandbox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: transparent;
+}
+
+.ExtendedCard-modal {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(0,0,0);
+  background: rgba(0,0,0,.8);
+  overflow: auto;
+}
+
+.ExtendedCard-modal-box {
+  position: relative;
+  background: white;
+  top: 12%;
+}
