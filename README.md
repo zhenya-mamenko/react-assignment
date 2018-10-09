@@ -1,3 +1,13 @@
+## The project
+
+This is the cocktails database, which use [TheCocktailDB.com API](https://thecocktaildb.com/api.php) for data.
+
+You can search for particular cocktail or just a couple of symbols, then filter by category or ingredient and sort by name, category or main ingredient. For moving through input/button/selects and cards you can use `Tab` and `Shift`+`Tab`, for opening extended card and searching from input line — `Enter`, for closing opened card — `Esc`.
+
+Project use the "Open Sans" font. External packages are Bootstrap and React Polyfill (for IE11 support).
+
+* * * * *  
+
 <img src="https://workingatendouble.com/content/uploads/2016/09/logo_endouble_default_coated.jpg" width="400">
 
 # React assignment
