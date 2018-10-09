@@ -7,7 +7,9 @@ const App = () => (
     <div className="container">
         <div className="row">
             <div className="col">
-                <h1 className="display-4 ml-3 mb-3">Cocktail Database</h1>
+                <h1 className="display-4 ml-3 mb-3">The Cocktails Database
+                    <small className="text-muted App-small"> by Evgenii Mamenko</small>
+                </h1>
             </div>
         </div>
         <CocktailsList />

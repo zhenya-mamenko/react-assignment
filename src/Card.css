@@ -3,6 +3,8 @@
 .Card {
     margin-bottom: 30px;
     cursor: pointer;
+    height: auto !important;
+    height: 400px;
 }
 
 .Card-ingredients {
@@ -10,4 +12,33 @@
     height: 3rem;
     overflow: hidden;
 }
-   
+
+@media (max-width: 575.98px) { 
+    .Card-image-col {
+        max-height: 230px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .Card-image-col {
+        max-height: 230px;
+    }
+}
+
+@media (max-width: 991.98px) { 
+    .Card-image-col {
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 1199.98px) { 
+    .Card-image-col {
+        max-height: 210px;
+    }
+}
+
+@media (min-width: 1200px) { 
+    .Card-image-col {
+        max-height: 250px;
+    }
+}
