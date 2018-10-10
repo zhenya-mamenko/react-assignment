@@ -16,10 +16,10 @@ class Select extends React.Component {
         const { field, items } = this.props;
         const options = [];
         if (items.length === 0) {
-            options.push(<option key="null" value="">Loading...</option>);
+            options.push(<option key="null" value="---null---">None</option>);
         } else {
             if (field !== 'Sort by') {
-                options.push(<option key="null" value="">Choose...</option>);
+                options.push(<option key="null" value="---null---">Choose...</option>);
             }
             items.sort().map((v) => {
                 options.push(<option key={v} value={v}>{v}</option>);

@@ -5,7 +5,5 @@ export const SORT_FIELDS = [
 ];
 
 export const API_SEARCH = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-export const API_CATEGORIES_LIST = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-export const API_INGREDIENTS_LIST = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 export const API_LOOKUP = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
 export const API_INGREDIENT_IMAGE = 'https://www.thecocktaildb.com/images/ingredients/###-Small.png';

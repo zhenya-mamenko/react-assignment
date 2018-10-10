@@ -1,3 +1,7 @@
+/*
+Component for cocktail card
+*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { render, unmountComponentAtNode } from 'react-dom';
@@ -24,6 +28,7 @@ function showExtendedCard(id) {
     if (extendedCardShowing) return;
     extendedCardShowing = true;
     const div = document.createElement('div');
+    // Use wrapper for showing Extended card
     const wrapper = (
         <div className="ExtendedCard-modal">
             <div
@@ -31,6 +36,7 @@ function showExtendedCard(id) {
                 role="button"
                 tabIndex="0"
                 onClick={() => closeExtendedCard(div)}
+                // Should test both Escape and Esc for IE 11 support
                 onKeyDown={(e) => { if (e.key === 'Escape' || e.key === 'Esc') closeExtendedCard(div); }}
             />
             <div className="ExtendedCard-modal-box rounded w-75 h-auto p-3 pt-0 pb-4 mx-auto">

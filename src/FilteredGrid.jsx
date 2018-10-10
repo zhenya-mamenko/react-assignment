@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from './Grid.jsx';
 import Select from './Select.jsx';
-import { SORT_FIELDS, API_CATEGORIES_LIST, API_INGREDIENTS_LIST } from './consts.jsx';
+import { SORT_FIELDS } from './consts.jsx';
+import Utils from './utils.jsx';
 import './FilteredGrid.css';
 
 class FilteredGrid extends React.Component {
@@ -14,50 +15,14 @@ class FilteredGrid extends React.Component {
                 ingredient: null,
             },
             sort: 'strCategory',
-            categories: [],
-            ingredients: [],
         };
         this.handleFilterChange = this.handleFilterChange.bind(this);
         this.handleSortChange = this.handleSortChange.bind(this);
     }
 
-    componentDidMount() {
-        fetch(API_CATEGORIES_LIST)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    const drinks = result.drinks ? result.drinks : [];
-                    this.setState({
-                        categories: drinks.map(v => v.strCategory).sort(),
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        categories: [error.message],
-                    });
-                },
-            );
-
-        fetch(API_INGREDIENTS_LIST)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    const drinks = result.drinks ? result.drinks : [];
-                    this.setState({
-                        ingredients: drinks.map(v => v.strIngredient1).sort(),
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        ingredients: [error.message],
-                    });
-                },
-            );
-    }
-
     handleFilterChange(field, value) {
         const filter = { ...this.state.filter };
-        filter[field] = value !== '' ? value : null;
+        filter[field] = value !== '---null---' ? value : null;
         this.setState({ filter });
     }
 
@@ -73,7 +38,7 @@ class FilteredGrid extends React.Component {
     filterItems() {
         function checkIngredient(drink, ingredient) {
             for (let i = 1; i <= 15; i += 1) {
-                const v = drink[`strIngredient${i}`];
+                const v = Utils.properCase(drink[`strIngredient${i}`]);
                 if (v === '') return false;
                 if (v === ingredient) return true;
             }
@@ -84,7 +49,7 @@ class FilteredGrid extends React.Component {
         const { category, ingredient } = this.state.filter;
         this.props.items.map((drink) => {
             if ((!category || drink.strCategory === category)
-                && (!ingredient || checkIngredient(drink, ingredient))
+                && (!ingredient || checkIngredient(drink, Utils.properCase(ingredient)))
             ) {
                 result.push(drink);
             }
@@ -98,11 +63,12 @@ class FilteredGrid extends React.Component {
         const existsIngredients = [];
         if (this.props.items.length > 0) {
             this.props.items.map((d) => {
-                if (existsCategories.indexOf(d.strCategory) === -1) existsCategories.push(d.strCategory);
+                const category = Utils.properCase(d.strCategory);
+                if (existsCategories.indexOf(category) === -1) existsCategories.push(category);
                 for (let i = 1; i <= 15; i += 1) {
-                    const v = d[`strIngredient${i}`];
-                    if (v === '') break;
-                    if (existsIngredients.indexOf(v) === -1) existsIngredients.push(v);
+                    const ingredient = Utils.properCase(d[`strIngredient${i}`]);
+                    if (ingredient === '') break;
+                    if (existsIngredients.indexOf(ingredient) === -1) existsIngredients.push(ingredient);
                 }
                 return false;
             });
@@ -126,14 +92,14 @@ class FilteredGrid extends React.Component {
                     <div className="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
                         <Select
                             field="Category"
-                            items={this.state.categories.filter(v => existsCategories.indexOf(v) !== -1)}
+                            items={existsCategories}
                             onChange={this.handleFilterChange}
                         />
                     </div>
                     <div className="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
                         <Select
                             field="Ingredient"
-                            items={this.state.ingredients.filter(v => existsIngredients.indexOf(v) !== -1)}
+                            items={existsIngredients}
                             onChange={this.handleFilterChange}
                         />
                     </div>

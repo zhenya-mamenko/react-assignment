@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card.jsx';
+import Utils from './utils.jsx';
 import './Grid.css';
 
 const Grid = ({ items, sort }) => {
@@ -19,7 +20,7 @@ const Grid = ({ items, sort }) => {
             items.map((drink) => {
                 let ingredients = '';
                 for (let i = 1; i <= 15; i += 1) {
-                    const v = drink[`strIngredient${i}`];
+                    const v = Utils.properCase(drink[`strIngredient${i}`]);
                     if (v === '') break;
                     ingredients += (ingredients !== '' ? ', ' : '') + v;
                 }
