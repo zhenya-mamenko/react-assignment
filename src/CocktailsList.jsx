@@ -16,10 +16,15 @@ class CocktailsList extends React.Component {
             isLoaded: false,
             error: null,
         };
+        this.isUnmount = false;
     }
 
     componentDidMount() {
         this.loadItems('');
+    }
+
+    componentWillUnmount() {
+        this.isUnmount = true;
     }
 
     handleChange(search) {
@@ -36,24 +41,30 @@ class CocktailsList extends React.Component {
     }
 
     loadItems(search) {
-        this.setState({
-            items: [],
-            isLoaded: false,
-        });
+        if (!this.isUnmount) {
+            this.setState({
+                items: [],
+                isLoaded: false,
+            });
+        }
         fetch(API_SEARCH + search)
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: result.drinks ? result.drinks : [],
-                    });
+                    if (!this.isUnmount) {
+                        this.setState({
+                            isLoaded: true,
+                            items: result.drinks ? result.drinks : [],
+                        });
+                    }
                 },
                 (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error,
-                    });
+                    if (!this.isUnmount) {
+                        this.setState({
+                            isLoaded: true,
+                            error,
+                        });
+                    }
                 },
             );
     }

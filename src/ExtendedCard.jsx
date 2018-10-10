@@ -17,6 +17,7 @@ class ExtendedCard extends React.Component {
             isLoaded: false,
             error: null,
         };
+        this.isUnmount = false;
     }
 
     componentDidMount() {
@@ -24,18 +25,26 @@ class ExtendedCard extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        cocktail: result.drinks[0],
-                    });
+                    if (!this.isUnmount) {
+                        this.setState({
+                            isLoaded: true,
+                            cocktail: result.drinks[0],
+                        });
+                    }
                 },
                 (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error,
-                    });
+                    if (!this.isUnmount) {
+                        this.setState({
+                            isLoaded: true,
+                            error,
+                        });
+                    }
                 },
             );
+    }
+
+    componentWillUnmount() {
+        this.isUnmount = true;
     }
 
     render() {
