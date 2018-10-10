@@ -3,6 +3,7 @@ Component for cocktails list. Manage search.
 */
 
 import React from 'react';
+import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only';
 import { API_SEARCH } from './consts.jsx';
 import FilteredGrid from './FilteredGrid.jsx';
 import './CocktailsList.css';
@@ -17,6 +18,8 @@ class CocktailsList extends React.Component {
             error: null,
         };
         this.isUnmount = false;
+        this.controller = new AbortController();
+        this.signal = this.controller.signal;
     }
 
     componentDidMount() {
@@ -25,6 +28,9 @@ class CocktailsList extends React.Component {
 
     componentWillUnmount() {
         this.isUnmount = true;
+        if (this.controller) this.controller.abort();
+        this.signal = undefined;
+        this.controller = undefined;
     }
 
     handleChange(search) {
@@ -47,10 +53,12 @@ class CocktailsList extends React.Component {
                 isLoaded: false,
             });
         }
-        fetch(API_SEARCH + search)
+        fetch(API_SEARCH + search, { signal: this.signal })
             .then(res => res.json())
             .then(
                 (result) => {
+                    this.signal = undefined;
+                    this.controller = undefined;
                     if (!this.isUnmount) {
                         this.setState({
                             isLoaded: true,
@@ -59,6 +67,8 @@ class CocktailsList extends React.Component {
                     }
                 },
                 (error) => {
+                    this.signal = undefined;
+                    this.controller = undefined;
                     if (!this.isUnmount) {
                         this.setState({
                             isLoaded: true,

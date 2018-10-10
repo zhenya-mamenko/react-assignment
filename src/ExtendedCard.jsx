@@ -5,6 +5,7 @@ Load data from API.
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only';
 import { API_LOOKUP } from './consts.jsx';
 import Cocktail from './Cocktail.jsx';
 import './ExtendedCard.css';
@@ -18,13 +19,17 @@ class ExtendedCard extends React.Component {
             error: null,
         };
         this.isUnmount = false;
+        this.controller = new AbortController();
+        this.signal = this.controller.signal;
     }
 
     componentDidMount() {
-        fetch(API_LOOKUP + this.props.id)
+        fetch(API_LOOKUP + this.props.id, { signal: this.signal })
             .then(res => res.json())
             .then(
                 (result) => {
+                    this.signal = undefined;
+                    this.controller = undefined;
                     if (!this.isUnmount) {
                         this.setState({
                             isLoaded: true,
@@ -33,6 +38,8 @@ class ExtendedCard extends React.Component {
                     }
                 },
                 (error) => {
+                    this.signal = undefined;
+                    this.controller = undefined;
                     if (!this.isUnmount) {
                         this.setState({
                             isLoaded: true,
@@ -45,6 +52,9 @@ class ExtendedCard extends React.Component {
 
     componentWillUnmount() {
         this.isUnmount = true;
+        if (this.controller) this.controller.abort();
+        this.signal = undefined;
+        this.controller = undefined;
     }
 
     render() {
