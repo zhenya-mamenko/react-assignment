@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@endouble.com/eslint-config-endouble": "^1.2.1",
+    "abortcontroller-polyfill": "^1.1.9",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -103,6 +104,13 @@
     ],
     "rules": {
       "react/forbid-prop-types": 0
+    },
+    "globals": {
+      "AbortController": true
     }
+  },
+  "devDependencies": {
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0"
   }
 }
