@@ -1,3 +1,7 @@
+/*
+Module with useful utilites
+*/
+
 const Utils = {
     properCase: (s) => {
         const result = [];

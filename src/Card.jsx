@@ -1,5 +1,5 @@
 /*
-Component for cocktail card
+UI component for cocktail card
 */
 
 import React from 'react';
@@ -11,6 +11,7 @@ import './Card.css';
 let extendedCardShowing = false;
 
 function keyListener(e) {
+    // Should test both Escape and Esc for IE 11 support
     if (e.key === 'Escape' || e.key === 'Esc') {
         e.preventDefault();
         document.getElementById('extended-card-close').click();
@@ -78,6 +79,7 @@ const Card = ({ id, image, name, category, ingredients }) => (
             role="button"
             tabIndex="0"
         >
+            {/* Workaround for IE 11 support */}
             <div className="row"><div className="col-12 Card-image-col"><img className="rounded img-fluid" src={image} alt={`${category} ${name}`} title={`${category} ${name}`} /></div></div>
             <div className="row">
                 <div className="card-body text-center col-12">

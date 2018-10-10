@@ -1,3 +1,7 @@
+/*
+UI Component for ingredient
+*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { API_INGREDIENT_IMAGE } from './consts.jsx';

@@ -22,6 +22,7 @@ class FilteredGrid extends React.Component {
 
     handleFilterChange(field, value) {
         const filter = { ...this.state.filter };
+        // Check filter, if none selected set filter to null
         filter[field] = value !== '---null---' ? value : null;
         this.setState({ filter });
     }

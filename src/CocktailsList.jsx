@@ -1,3 +1,7 @@
+/*
+Component for cocktails list. Manage search.
+*/
+
 import React from 'react';
 import { API_SEARCH } from './consts.jsx';
 import FilteredGrid from './FilteredGrid.jsx';

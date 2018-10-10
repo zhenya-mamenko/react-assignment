@@ -1,3 +1,8 @@
+/*
+Component for extended cocktail card, opened by clicking on card in list.
+Load data from API.
+*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { API_LOOKUP } from './consts.jsx';

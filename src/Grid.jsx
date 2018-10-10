@@ -1,3 +1,7 @@
+/*
+UI component for card grid. Manage cards sorting
+*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card.jsx';
@@ -10,7 +14,7 @@ const Grid = ({ items, sort }) => {
             return -1;
         } else if (a[sort] > b[sort]) {
             return 1;
-        } else if (sort !== 'strDrink') {
+        } else if (sort !== 'strDrink') { // Use cocktail's name as second sorting field
             return a.strDrink > b.strDrink ? 1 : -1;
         }
         return 0;

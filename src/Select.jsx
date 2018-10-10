@@ -1,3 +1,7 @@
+/*
+UI component for filtering and sorting
+*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Select.css';

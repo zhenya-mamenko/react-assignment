@@ -1,3 +1,7 @@
+/*
+Constants for API links and sorting fields
+*/
+
 export const SORT_FIELDS = [
     { json: 'strDrink', show: 'Name' },
     { json: 'strCategory', show: 'Category' },
