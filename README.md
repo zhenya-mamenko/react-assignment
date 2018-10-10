@@ -4,7 +4,7 @@ This is the cocktails database, which use [TheCocktailDB.com API](https://thecoc
 
 You can search for a particular cocktail or just a couple of symbols, then filter by category or ingredient and sort by name, category or main ingredient. For moving through input/button/selects and cards you can use `Tab` and `Shift`+`Tab`, for opening extended card and searching from input line — `Enter`, for closing opened card — `Esc`.
 
-Project uses the "Open Sans" font. External packages are Bootstrap and React Polyfill (for IE11 support).
+Project uses the "Open Sans" font. External packages are Bootstrap, AbortController polyfill and React polyfill (for IE11 support).
 
 * * * * *  
 
