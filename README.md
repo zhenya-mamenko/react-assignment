@@ -8,7 +8,7 @@ Project uses the "Open Sans" font. External packages are Bootstrap, AbortControl
 
 **updated 03/18/2019** Removed /build from .gitignore and added Dockerfile for fast start with Docker.
 
-Just run `docker build -t serve` then `docker run -d -p 80:80 serve`. Enjoy.
+Just run `docker build -t serve .` then `docker run -d -p 80:80 serve`. Enjoy.
 
 * * * * *  
 
