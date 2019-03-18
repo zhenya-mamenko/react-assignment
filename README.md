@@ -7,6 +7,7 @@ You can search for a particular cocktail or just a couple of symbols, then filte
 Project uses the "Open Sans" font. External packages are Bootstrap, AbortController polyfill and React polyfill (for IE11 support).
 
 **updated 03/18/2019** Removed /build from .gitignore and added Dockerfile for fast start with Docker.
+
 Just run `docker build -t serve` then `docker run -d -p 80:80 serve`. Enjoy.
 
 * * * * *  
